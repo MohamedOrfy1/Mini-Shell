@@ -21,6 +21,7 @@ struct Command {
     char *_outFile;
     char *_inputFile;
     char *_errFile;
+    int _greaterFlag;
     int _background;
     int _append;
     int _appendBack; // Changed from _appback to _appendBack for consistency

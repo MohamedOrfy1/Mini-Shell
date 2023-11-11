@@ -13,7 +13,7 @@
 
 %token	<string_val> WORD
 
-%token 	NOTOKEN GREAT NEWLINE GREATGREAT LESS AMPERSAND PIPE EXIT CD
+%token 	NOTOKEN GREAT NEWLINE GREATGREAT LESS AMPERSAND GREATAMPERSAND GREATERAMPERSAND PIPE EXIT SPECIAL CD
 
 %union	{
 		char   *string_val;
@@ -126,6 +126,20 @@ iomodifier_opt:
 	LESS WORD {
 		printf("   Yacc: insert input \"%s\"\n", $2);
 		Command::_currentCommand._inputFile = $2;
+	}
+	|   GREATAMPERSAND WORD {
+		
+		//Command::_currentCommand._outFile = $2;
+		Command::_currentCommand._errFile = $2;
+		Command::_currentCommand._greaterFlag=1;
+	
+	}
+	|GREATERAMPERSAND WORD  {
+	
+		//Command::_currentCommand._outFile = $2;
+		Command::_currentCommand._errFile = $2;
+	
+	
 	}
 	;
 
